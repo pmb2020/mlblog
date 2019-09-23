@@ -1,0 +1,58 @@
+{extend name='common/base' /}
+
+{block name='body'}
+<div class="main" style="">
+			<div class="main-content">
+				<div class="main-top">
+					<p class="mbaoxie"><a href="/">首页</a><span>/</span>文章列表</p>
+					<p class="main-gg">公告：欢迎光临我的后台管理系统，我求求你！</p>
+				</div>
+				<div class="box_padd30">
+					<div class="main-box">
+						<ul class="ul_tag">
+							<li class="active"><a href="#">全部(54)</a></li>
+							<li><a href="#">公开(45)</a></li>
+							<li><a href="#">私密(12)</a></li>
+							<li><a href="#">草稿箱(5)</a></li>
+						</ul>
+						<ul class="list_ul">
+							{volist id='list' name='list'}
+							<li>
+								<h2 class="list_title"><a href="#">{$list.title}</a></h2>
+								<div class="list_info">
+									<div class="list_info_left">
+										<span>{$list.type}</span>
+										<span>{$list.time}</span>
+										<span><i class="fa fa-eye" aria-hidden="true"></i>{$list.read_num}</span>
+										<span><i class="fa fa-commenting-o" aria-hidden="true"></i>{$list.comment_num}</span>
+									</div>
+									<div class="list_info_right">
+										<a class="d-none" href="#">设为私密</a>
+										<a class="d-none" href="#">编辑</a>
+										<a class="del_a" href="javascript:void(0)" onclick="del({$list.id})">删除</a>
+									</div>
+								</div>
+							</li>
+							{/volist}
+							{$page}
+							
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+</div>
+{/block}
+{block name='myjs'}
+<script type="text/javascript">
+	 function del(id) {
+			if (window.confirm('您确定要删除吗？')) {
+				var url="del/id1.html";
+				var tiaourl = url.replace('id1',id);
+				window.location.href = tiaourl;
+			}else{
+				return false;
+			}
+		} 
+</script>
+{/block}

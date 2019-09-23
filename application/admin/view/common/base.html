@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	{include file='common/head' /}
+	<body>
+		<!-- 头部 -->
+		{include file='common/header' /}
+
+		<!-- 侧边导航栏 -->
+		{include file='common/nav' /}
+
+		<!-- 内容主体 -->
+		{block name='body'}{/block}
+		
+		<!-- js -->
+		{block name='myjs'}
+		<script src="/__STATIC__2/js/jquery-3.3.1.min.js"></script>
+		<script src="/__STATIC__2/js/base.js"></script>
+		{/block}
+	
+
+	</body>
+</html>

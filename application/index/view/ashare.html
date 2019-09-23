@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>爱分享 - K先生的博客</title>
+		<meta name="Keywords" content="爱分享,K先生的博客">
+		<meta name="Description" content="分享html模板、js特效、php源码等资源-K先生的博客">
+		<link rel="stylesheet" type="text/css" href="/__STATIC__1/css/base.css" />
+	</head>
+	<body>
+		{include file='common/header' /}
+		<div class="container" style="margin-top: 15px">
+			<p class="top_p"><a class="a1" href="index.html">网站首页</a><a class="a2" href="index.html">爱分享</a><span>好咖啡要和朋友一起品尝，好“模板”也要和同样喜欢它的人一起分享。</span></p>
+			<div>
+				<ul class="type_ul">
+					<li style="background-color: #1487ee;"><a href="/share.html" style="color: #fff;">全部</a></li>
+					<li><a href="/shareid/1.html">html模板</a></li>
+					<li><a href="/shareid/2.html">js特效</a></li>
+					<li><a href="/shareid/3.html">其他</a></li>
+				</ul>
+			</div>
+			<ul class="share_ul">
+				{volist id='list' name='list'}
+				<li>
+					<div class="share_li">
+						<a href="info/{$list.id}.html">
+							<div class="img_box">
+								<img title="{$list.title}" src="/__STATIC__1/imgs/03.jpg">
+							</div>
+							<h2><span>{$list.title}</span></h2>
+							<span class="share_like">喜欢
+								| 0</span>
+						</a>
+					</div>
+				</li>
+				{/volist}
+				</ul>
+				{$page}
+		</div>
+		{include file='common/footer' /}
+	</body>
+</html>
