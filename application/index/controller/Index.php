@@ -51,6 +51,7 @@ class Index extends Controller {
 			$data1['id'] = '';
 			$data1['title'] = '没有下一篇了';}
 		// dump(type($res1));die();
+		$res1['desc'] = mb_substr(strip_tags($res1['content']), 0, 180, 'utf-8'); //seo描述
 		$this->assign([
 			'data' => type($res1),
 			'next_title' => $data1,
@@ -99,7 +100,7 @@ function changeType($result) {
 		$img_arr[$key] = explode('.', $value)[0];
 	}
 	foreach ($result as $key => &$value) {
-		$value['content'] = substr(strip_tags($value['content']), 0, 310);
+		$value['content'] = mb_substr(strip_tags($value['content']), 0, 180, 'utf-8');
 		switch ($value['type']) {
 		case '0':
 			$value['type'] = '爱生活';
