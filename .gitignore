@@ -2,7 +2,7 @@
 composer.lock
 *.log
 thinkphp
-#application/database.*
-#application/config.*
+application/database.*
+application/config.*
 public/uploads
 public/static/titleimg
