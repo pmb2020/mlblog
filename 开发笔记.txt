@@ -1,4 +1,4 @@
-•目录使用小写+下划线
+﻿•目录使用小写+下划线
 •类文件采用驼峰法命名（首字母大写），其它文件采用小写+下划线命名
 •类名和类文件名保持一致，统一采用驼峰法命名
 
@@ -15,6 +15,10 @@
 'auto_bind_module' => true,
 
 
+初始化：
+修改数据库配置、创建数据库
+修改titleimg、uploads权限(777)
+
 博客数据库设计
 1、文章表
 id
@@ -26,6 +30,8 @@ time
 read_num   阅读量
 comment_num评论数
 url        附件链接(主要爱分享)
+
+CREATE TABLE `wang_mlblog`.`ml_article` ( `id` INT NOT NULL AUTO_INCREMENT , `status` TINYINT(4) NOT NULL DEFAULT '0' , `type` TINYINT(4) NOT NULL , `title` VARCHAR(100) NOT NULL , `content` TEXT NOT NULL , `time` TIMESTAMP NOT NULL , `read_num` INT NOT NULL DEFAULT '0' , `comment_num` INT NOT NULL DEFAULT '0' , `url` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 2、评论表
 id

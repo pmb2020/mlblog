@@ -14,7 +14,7 @@ class Index extends Controller {
 	}
 
 	public function ajishu() {
-		$result = db('ml_article')->field('id,type,title,content,time,read_num,comment_num')->order('id desc')->paginate(10);
+		$result = db('ml_article')->where('status', 0)->where('type', 1)->field('id,type,title,content,time,read_num,comment_num')->order('id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
 		$this->assign('page', $page);
@@ -23,7 +23,7 @@ class Index extends Controller {
 	}
 
 	public function alife() {
-		$result = db('ml_article')->field('id,type,title,content,time,read_num,comment_num')->order('id desc')->paginate(10);
+		$result = db('ml_article')->where('status', 0)->where('type', 0)->field('id,type,title,content,time,read_num,comment_num')->order('id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
 		$this->assign('page', $page);
@@ -39,7 +39,7 @@ class Index extends Controller {
 		return view('/ashare');
 	}
 	public function info($id) {
-		Db::table('ml_article')->where('id', $id)->setInc('read_num');
+		Db::table('ml_article')->where('status', 0)->where('id', $id)->setInc('read_num');
 		$res1 = db('ml_article')->where('id', $id)->find();
 		$data1 = db('ml_article')->where("id", ">", $res1['id'])->field('id,title')->order("id", "asc")->find();
 		$data2 = db('ml_article')->where("id", "<", $res1['id'])->field('id,title')->order("id", "desc")->find();
