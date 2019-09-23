@@ -91,6 +91,9 @@ function type($arr) {
 // 类型输出转换
 function changeType($result) {
 	$path = $_SERVER['DOCUMENT_ROOT'] . '/static/titleimg/';
+	if (!file_exists($path)) {
+		mkdir($path);
+	}
 	$img_arr = scandir($path);
 	foreach ($img_arr as $key => $value) {
 		$img_arr[$key] = explode('.', $value)[0];
