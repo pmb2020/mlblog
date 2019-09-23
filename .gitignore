@@ -3,3 +3,4 @@ composer.lock
 *.log
 thinkphp
 application/database.*
+application/config.*
