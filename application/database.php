@@ -17,7 +17,7 @@ return [
 	// 数据库名
 	'database' => 'wang_mlblog',
 	// 用户名
-	'username' => 'root11',
+	'username' => 'root1111111',
 	// 密码
 	'password' => 'root',
 	// 端口
