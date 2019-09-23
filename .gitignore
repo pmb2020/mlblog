@@ -4,5 +4,5 @@ composer.lock
 thinkphp
 application/database.php
 application/config.php
-public/uploads
-public/static/titleimg
+public/uploads/
+public/static/titleimg/

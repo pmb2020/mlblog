@@ -89,12 +89,12 @@ class Index extends Base {
 	public function uploadImg() {
 		$file = request()->file('file');
 
-		$info = $file->validate(['size' => 5 * 1024 * 1024, 'ext' => 'jpg,png,gif'])->rule('myName')->move(ROOT_PATH . 'public' . DS . 'uploads/images');
+		$info = $file->validate(['size' => 5 * 1024 * 1024, 'ext' => 'jpg,png,gif'])->rule('myName')->move(ROOT_PATH . 'public' . DS . 'uploads');
 		if ($info) {
 			$name_path = str_replace('\\', "/", $info->getSaveName());
 			$res = [
 				'errno' => 0,
-				'data' => ['/uploads/images/' . $name_path],
+				'data' => ['/uploads/' . $name_path],
 			];
 		} else {
 			$res = [
