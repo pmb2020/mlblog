@@ -32,7 +32,7 @@ read_num   阅读量
 comment_num评论数
 url        附件链接(主要爱分享)
 
-CREATE TABLE `wang_mlblog`.`ml_article` ( `id` INT NOT NULL AUTO_INCREMENT , `status` TINYINT(4) NOT NULL DEFAULT '0' , `type` TINYINT(4) NOT NULL , `title` VARCHAR(100) NOT NULL , `content` TEXT NOT NULL , `time` TIMESTAMP NOT NULL , `read_num` INT NOT NULL DEFAULT '0' , `comment_num` INT NOT NULL DEFAULT '0' , `url` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `study`.`ml_article` ( `id` INT NOT NULL AUTO_INCREMENT , `status` TINYINT(4) NOT NULL DEFAULT '0' , `type` TINYINT(4) NOT NULL , `title` VARCHAR(100) NOT NULL , `content` TEXT NOT NULL , `time` TIMESTAMP NOT NULL , `read_num` INT NOT NULL DEFAULT '0' , `comment_num` INT NOT NULL DEFAULT '0' , `url` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 2、评论表
 id
@@ -43,3 +43,28 @@ name
 time
 ip
 top_time 上次评论时间
+
+3、访客记录表
+id
+ip
+time
+address
+设备（手机或PC）
+来源
+is_new是不是新访客(上次访问时间)
+fwweb访问页面
+fwtime访问时长
+fwnum访问页数
+
+CREATE TABLE `count` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` char(15) DEFAULT NULL,
+  `last_time` int(11) DEFAULT '0',
+  `url` varchar(100) DEFAULT NULL,
+  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `address` varchar(20) DEFAULT NULL,
+  `device` tinyint(3) DEFAULT NULL COMMENT '1pc、2手机',
+  `page_num` tinyint(3) DEFAULT '1',
+  `referer` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;

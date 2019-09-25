@@ -1,9 +1,9 @@
 <?php
 namespace app\index\controller;
-use think\Controller;
+// use think\Controller;
 use think\Db;
 
-class Index extends Controller {
+class Index extends Base {
 	public function index() {
 		$result = db('ml_article')->where('status', 0)->field('id,type,title,content,time,read_num,comment_num')->order('id desc')->paginate(10);
 		$page = $result->render();
@@ -32,6 +32,14 @@ class Index extends Controller {
 	}
 	public function ashare() {
 		$result = db('ml_article')->where('status', 0)->where('type', '>', 3)->field('id,type,title,content,time,read_num,comment_num')->order('id desc')->paginate(10);
+		$page = $result->render();
+		$result = changeType($result->all());
+		$this->assign('page', $page);
+		$this->assign('list', $result);
+		return view('/ashare');
+	}
+	public function shareId($id) {
+		$result = db('ml_article')->where('status', 0)->where('type', $id + 3)->field('id,type,title,content,time,read_num,comment_num')->order('id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
 		$this->assign('page', $page);

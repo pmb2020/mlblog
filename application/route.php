@@ -21,6 +21,7 @@ return [
 	// 前台路由
 	'ajishu' => 'index/index/ajishu',
 	'ashare' => 'index/index/ashare',
+	'shareId/:id' => 'index/index/shareId',
 	'alife' => 'index/index/alife',
 	'apinbo' => 'index/index/apinbo',
 	'gbook' => 'index/index/gbook',
@@ -33,6 +34,7 @@ return [
 	'admin/index' => 'admin/index/index',
 	'admin/write' => 'admin/index/write',
 	'admin/list' => 'admin/index/list',
+	'admin/webtj' => 'admin/index/webtj',
 	'admin/test/:id' => 'admin/index/test',
 	'admin/del/:id' => 'admin/index/del',
 	'admin/loginOut' => 'admin/index/loginOut',

@@ -63,8 +63,11 @@ class Index extends Base {
 			}
 		}
 	}
-	public function test($id) {
-		return 'This is a test!' . $id;
+	// 网站统计
+	public function webtj() {
+		// phpinfo();
+		// die();
+		return view('/webtj');
 	}
 	// 注销登录
 	public function loginOut() {
