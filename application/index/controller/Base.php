@@ -13,12 +13,12 @@ class Base extends Controller {
 			$count_arr = [
 				'ip' => $this->getIp(),
 				'url' => $this->getUrl(),
-				'device' => $this->isMobile(),
+				'device' => $this->isMobile1(),
 				'referer' => $this->getFromPage(),
 			];
 			$count_arr['last_time'] = $this->lastTime($count_arr['ip']);
 			db('count')->insert($count_arr);
-			Cookie::set('count', db('count')->max('id'), 1 * 3600);
+			Cookie::set('count', db('count')->max('id'), 60);
 			// echo "string" . Cookie::get('count');
 		}
 		db('count')->where('id', Cookie::get('count'))->setInc('page_num');
@@ -86,6 +86,19 @@ class Base extends Controller {
 			return strtotime($res['time']);
 		}
 		return time();
+	}
+
+	public function isMobile1() {
+		$agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+		$is_pc = (strpos($agent, 'windows nt')) ? true : false;
+		$is_iphone = (strpos($agent, 'iphone')) ? true : false;
+		if ($is_pc) {
+			return 1;
+		}
+		if ($is_iphone) {
+			return 2;
+		}
+		return 3;
 	}
 	//根据UA判断PC还是移动
 	function isMobile() {
