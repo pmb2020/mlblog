@@ -21,6 +21,7 @@ class Base extends Controller {
 			Cookie::set('count', db('count')->max('id'), 60);
 			// echo "string" . Cookie::get('count');
 		}
+		// echo stripos($_SERVER['HTTP_USER_AGENT'], 'Windows');
 		db('count')->where('id', Cookie::get('count'))->setInc('page_num');
 
 	}
@@ -89,7 +90,18 @@ class Base extends Controller {
 	}
 
 	//根据UA判断PC还是移动
-	function isMobile() {
+	public function isMobile() {
+		if (stripos($_SERVER['HTTP_USER_AGENT'], 'Windows')) {
+			return 1;
+		}
+		if (stripos($_SERVER['HTTP_USER_AGENT'], 'Android')) {
+			return 2;
+		}
+		return 3;
+		// if ($_SERVER['HTTP_USER_AGENT'], 'Windows')) ??
+	}
+	//根据UA判断PC还是移动(不准确暂不使用)
+	function isMobile11() {
 		$useragent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
 		$useragent_commentsblock = preg_match('|\(.*?\)|', $useragent, $matches) > 0 ? $matches[0] : '';
 		function CheckSubstrs($substrs, $text) {
