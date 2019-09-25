@@ -97,7 +97,10 @@ class Base extends Controller {
 		if (stripos($_SERVER['HTTP_USER_AGENT'], 'Android')) {
 			return 2;
 		}
-		return 3;
+		if (stripos($_SERVER['HTTP_USER_AGENT'], 'spider')) {
+			return 3;
+		}
+		return 4;
 		// if ($_SERVER['HTTP_USER_AGENT'], 'Windows')) ??
 	}
 	//根据UA判断PC还是移动(不准确暂不使用)
