@@ -9,7 +9,7 @@ use think\Cookie;
 class Base extends Controller {
 
 	public function _initialize() {
-		if (!Cookie::has('count')) {
+		if (!Cookie::has('ml_count')) {
 			$count_arr = [
 				'ip' => $this->getIP11(),
 				'url' => $this->getUrl(),
@@ -17,12 +17,13 @@ class Base extends Controller {
 				'referer' => $this->getFromPage(),
 			];
 			$count_arr['last_time'] = $this->lastTime($count_arr['ip']);
+			//同一ip一小时不重复记录
 			if ($count_arr['last_time'] + 3600 < time()) {
-				db('count')->insert($count_arr);
+				db('ml_count')->insert($count_arr);
 			}
-			Cookie::set('count', db('count')->max('id'), 600);
+			Cookie::set('count', db('ml_count')->max('id'), 3600);
 		}
-		db('count')->where('id', Cookie::get('count'))->setInc('page_num');
+		db('ml_count')->where('id', Cookie::get('ml_count'))->setInc('page_num');
 
 	}
 	//获取访客ip(暂不使用)
@@ -56,7 +57,7 @@ class Base extends Controller {
 			if ($ip) {
 				array_unshift($ips, $ip);
 				$ip = FALSE;}
-			for ($i = 0; $i < count($ips); $i++) {
+			for ($i = 0; $i < ml_count($ips); $i++) {
 				if (!eregi("^(10│172.16│192.168).", $ips[$i])) {
 					$ip = $ips[$i];
 					break;
@@ -82,7 +83,7 @@ class Base extends Controller {
 	}
 	//上次访问时间
 	public function lastTime($ip) {
-		$res = db('count')->field('time')->where('ip', $ip)->order('id desc')->find();
+		$res = db('ml_count')->field('time')->where('ip', $ip)->order('id desc')->find();
 		if ($res) {
 			return strtotime($res['time']);
 		}
@@ -114,31 +115,6 @@ class Base extends Controller {
 			return '其他';
 		}
 		return '未知';
-	}
-	//根据UA判断PC还是移动(不准确暂不使用)
-	function isMobile11() {
-		$useragent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
-		$useragent_commentsblock = preg_match('|\(.*?\)|', $useragent, $matches) > 0 ? $matches[0] : '';
-		function CheckSubstrs($substrs, $text) {
-			foreach ($substrs as $substr) {
-				if (false !== strpos($text, $substr)) {
-					return 1;
-				}
-			}
-
-			return 2;
-		}
-		$mobile_os_list = array('Google Wireless Transcoder', 'Windows CE', 'WindowsCE', 'Symbian', 'Android', 'armv6l', 'armv5', 'Mobile', 'CentOS', 'mowser', 'AvantGo', 'Opera Mobi', 'J2ME/MIDP', 'Smartphone', 'Go.Web', 'Palm', 'iPAQ');
-		$mobile_token_list = array('Profile/MIDP', 'Configuration/CLDC-', '160×160', '176×220', '240×240', '240×320', '320×240', 'UP.Browser', 'UP.Link', 'SymbianOS', 'PalmOS', 'PocketPC', 'SonyEricsson', 'Nokia', 'BlackBerry', 'Vodafone', 'BenQ', 'Novarra-Vision', 'Iris', 'NetFront', 'HTC_', 'Xda_', 'SAMSUNG-SGH', 'Wapaka', 'DoCoMo', 'iPhone', 'iPod');
-
-		$found_mobile = CheckSubstrs($mobile_os_list, $useragent_commentsblock) ||
-		CheckSubstrs($mobile_token_list, $useragent);
-
-		if ($found_mobile) {
-			return 1;
-		} else {
-			return 2;
-		}
 	}
 
 }

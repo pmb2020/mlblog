@@ -56,14 +56,14 @@ fwweb访问页面
 fwtime访问时长
 fwnum访问页数
 
-CREATE TABLE `count` (
+CREATE TABLE `ml_count` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` char(15) DEFAULT NULL,
   `last_time` int(11) DEFAULT '0',
   `url` varchar(100) DEFAULT NULL,
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `address` varchar(20) DEFAULT NULL,
-  `device` tinyint(3) DEFAULT NULL COMMENT '1pc、2手机',
+  `device` char(6) DEFAULT NULL COMMENT '1pc、2手机',
   `page_num` tinyint(3) DEFAULT '1',
   `referer` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`Id`)

@@ -67,12 +67,24 @@
 									<th>来源</th>
 									<th>入口页面</th>
 									<th>访问IP</th>
-									<th>访问时长</th>
+									<th>上次访问</th>
 									<th>访问页数</th>
 								</tr>
 							</thead>
 							<tbody>
+								{volist id='list' name='list'}
 								<tr>
+									<th>{$key+1}</th>
+									<td>{$list.time}</td>
+									<td>北京</td>
+									<td>{$list.referer}</td>
+									<td>{$list.url}</td>
+									<td>{$list.ip}</td>
+									<td>-</td>
+									<td>{$list.page_num}</td>
+								</tr>
+								{/volist}
+							<!-- 	<tr>
 									<th>1</th>
 									<td>2019/09/01 <br>20:44:50</td>
 									<td>北京</td>
@@ -81,20 +93,12 @@
 									<td>113.100.254.127</td>
 									<td>52"</td>
 									<td>2</td>
-								</tr>
-								<tr>
-									<th>2</th>
-									<td>2019/09/01<br>20:44:50</td>
-									<td>河南</td>
-									<td>直接访问</td>
-									<td>http://www.gold404.cn</td>
-									<td>113.100.254.127</td>
-									<td>52"</td>
-									<td>2</td>
-								</tr>
+								</tr> -->
 														
 							</tbody>
 						</table>
+						{$page}
+
 					</div>
 
 				</div>

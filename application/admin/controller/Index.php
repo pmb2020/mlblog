@@ -65,8 +65,15 @@ class Index extends Base {
 	}
 	// 网站统计
 	public function webtj() {
-		// phpinfo();
-		// die();
+		$rel = db('ml_count')->order('id desc')->paginate(10);
+		$page = $rel->render();
+		$rel = $rel->all();
+		// dump($rel);
+
+		$this->assign([
+			'list' => $rel,
+			'page' => $page,
+		]);
 		return view('/webtj');
 	}
 	// 注销登录
