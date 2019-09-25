@@ -11,7 +11,7 @@ class Base extends Controller {
 	public function _initialize() {
 		if (!Cookie::has('count')) {
 			$count_arr = [
-				'ip' => $this->getIp(),
+				'ip' => $this->getIP11(),
 				'url' => $this->getUrl(),
 				'device' => $this->isMobile(),
 				'referer' => $this->getFromPage(),
@@ -23,6 +23,25 @@ class Base extends Controller {
 		}
 		db('count')->where('id', Cookie::get('count'))->setInc('page_num');
 
+	}
+
+	function getIP11() {
+		if (getenv('HTTP_CLIENT_IP')) {
+			$ip = getenv('HTTP_CLIENT_IP');
+		} elseif (getenv('HTTP_X_FORWARDED_FOR')) {
+			$ip = getenv('HTTP_X_FORWARDED_FOR');
+		} elseif (getenv('HTTP_X_FORWARDED')) {
+			$ip = getenv('HTTP_X_FORWARDED');
+		} elseif (getenv('HTTP_FORWARDED_FOR')) {
+			$ip = getenv('HTTP_FORWARDED_FOR');
+
+		} elseif (getenv('HTTP_FORWARDED')) {
+			$ip = getenv('HTTP_FORWARDED');
+		} else {
+			$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0';
+		}
+
+		return $ip;
 	}
 
 	//获取访客ip
