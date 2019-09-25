@@ -11,20 +11,20 @@ class Base extends Controller {
 	public function _initialize() {
 		if (!Cookie::has('count')) {
 			$count_arr = [
-				'ip' => $this->getIP11(),
+				'ip' => $this->getIp(),
 				'url' => $this->getUrl(),
 				'device' => $this->isMobile(),
 				'referer' => $this->getFromPage(),
 			];
 			$count_arr['last_time'] = $this->lastTime($count_arr['ip']);
 			db('count')->insert($count_arr);
-			Cookie::set('count', db('count')->max('id'), 3 * 3600);
+			Cookie::set('count', db('count')->max('id'), 1 * 3600);
 			// echo "string" . Cookie::get('count');
 		}
 		db('count')->where('id', Cookie::get('count'))->setInc('page_num');
 
 	}
-
+	//获取访客ip(暂不使用)
 	function getIP11() {
 		if (getenv('HTTP_CLIENT_IP')) {
 			$ip = getenv('HTTP_CLIENT_IP');
