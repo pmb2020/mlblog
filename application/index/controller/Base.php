@@ -17,11 +17,11 @@ class Base extends Controller {
 				'referer' => $this->getFromPage(),
 			];
 			$count_arr['last_time'] = $this->lastTime($count_arr['ip']);
-			db('count')->insert($count_arr);
-			Cookie::set('count', db('count')->max('id'), 60);
-			// echo "string" . Cookie::get('count');
+			if ($count_arr['last_time'] + 3600 < time()) {
+				db('count')->insert($count_arr);
+			}
+			Cookie::set('count', db('count')->max('id'), 600);
 		}
-		// echo stripos($_SERVER['HTTP_USER_AGENT'], 'Windows');
 		db('count')->where('id', Cookie::get('count'))->setInc('page_num');
 
 	}
@@ -86,22 +86,34 @@ class Base extends Controller {
 		if ($res) {
 			return strtotime($res['time']);
 		}
-		return time();
+		return 0;
 	}
 
 	//根据UA判断PC还是移动
 	public function isMobile() {
-		if (stripos($_SERVER['HTTP_USER_AGENT'], 'Windows')) {
-			return 1;
+		$ua = $_SERVER['HTTP_USER_AGENT'];
+		if (stripos($ua, 'Windows')) {
+			return 'PC';
 		}
-		if (stripos($_SERVER['HTTP_USER_AGENT'], 'Android')) {
-			return 2;
+		if (stripos($ua, 'Android')) {
+			return '移动';
 		}
-		if (stripos($_SERVER['HTTP_USER_AGENT'], 'spider')) {
-			return 3;
+		if (stripos($ua, 'Baiduspider')) {
+			return '百度';
 		}
-		return 4;
-		// if ($_SERVER['HTTP_USER_AGENT'], 'Windows')) ??
+		if (stripos($ua, 'Googlebot')) {
+			return '谷歌';
+		}
+		if (stripos($ua, 'spider')) {
+			if (stripos($ua, 'sogou')) {
+				return '搜狗';
+			}
+			if (stripos($ua, '360')) {
+				return '360';
+			}
+			return '其他';
+		}
+		return '未知';
 	}
 	//根据UA判断PC还是移动(不准确暂不使用)
 	function isMobile11() {
