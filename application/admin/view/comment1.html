@@ -1,7 +1,54 @@
-{extend name='common/base' /}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>迷鹿后台管理系统</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+		<link rel="stylesheet" type="text/css" href="lib/fonticon/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/base.css">
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<header class="header">
+			<div class="header_l" style="">
+				<div class="logo">
+					<a href="#"><img src="images/logo.png" /></a>
+				</div>
+				<button id="bar" style="">
+					<i class="fa fa-bars" aria-hidden="true" style="font-size: 28px;color: #fff;"></i>
+				</button>
+			</div>
+			<div class="header_r" style="">
+				<ul class="header_ul ">
+					<li><i class="fa fa-bell-o icon_fff min_num" aria-hidden="true"><span>2</span></i></li>
+					<li id="avatar">
+					<img src="http://img0.imgtn.bdimg.com/it/u=3616660187,4185961025&fm=26&gp=0.jpg" alt="">
+					<span class="header_name d-none">管理员</span>
+					<i class="fa fa-sort-desc icon_fff d-none" aria-hidden="true"></i>
+					<div class="avatar_box" style="display: none;">
+						<ul>
+							<li>设置</li>
+							<li><a href="#">退出</a></li>
+						</ul>
+					</div>
+					</li>
+				</ul>
+			</div>
+		</header>
+		<nav class="nav">
+			<ul class="nav_ul">
+				<li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i>后台首页</a></li>
+				<li><a href="write.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>发表文章</a></li>
+				<li><a href="list.html"><i class="fa fa-book" aria-hidden="true"></i>文章管理</a></li>
+				<li><a href="comment.html"><i class="fa fa-comments" aria-hidden="true"></i>评论管理</a></li>
+				<li><a href="webtj.html"><i class="fa fa-line-chart" aria-hidden="true"></i>网站统计</a></li>
+				<li><a href="webset.html"><i class="fa fa-cog" aria-hidden="true"></i>系统设置</a></li>
+			</ul>
+		</nav>
 
-{block name='body'}
-<div class="main" style="">
+		<div class="main" style="">
 			<div class="main-content">
 				<div class="main-top">
 					<p class="mbaoxie"><a href="/">首页</a><span>/</span>评论管理</p>
@@ -130,17 +177,7 @@
 				</div>
 			</div>
 		</div>
-{/block}
-{block name='myjs'}
-<script type="text/javascript">
-	 function del(id) {
-			if (window.confirm('您确定要删除吗？')) {
-				var url="del/id1.html";
-				var tiaourl = url.replace('id1',id);
-				window.location.href = tiaourl;
-			}else{
-				return false;
-			}
-		} 
-</script>
-{/block}
+	</body>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/base.js"></script>
+</html>

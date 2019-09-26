@@ -10,15 +10,15 @@
 				<div class="box_padd30">
 					<div class="main-box">
 						<ul class="ul_tag">
-							<li class="active"><a href="#">全部(54)</a></li>
-							<li><a href="#">公开(45)</a></li>
-							<li><a href="#">私密(12)</a></li>
-							<li><a href="#">草稿箱(5)</a></li>
+							<li class="active"><a href="#">全部({$num.all})</a></li>
+							<li><a href="#">公开(0)</a></li>
+							<li><a href="#">私密(0)</a></li>
+							<li><a href="#">草稿箱(0)</a></li>
 						</ul>
 						<ul class="list_ul">
 							{volist id='list' name='list'}
 							<li>
-								<h2 class="list_title"><a href="#">{$list.title}</a></h2>
+								<h2 class="list_title"><a href="/info/{$list.id}.html">{$list.title}</a></h2>
 								<div class="list_info">
 									<div class="list_info_left">
 										<span>{$list.type}</span>

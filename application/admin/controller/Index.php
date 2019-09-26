@@ -31,6 +31,9 @@ class Index extends Base {
 		$result = db('ml_article')->field('id,type,title,time,read_num,comment_num')->order('id desc')->paginate(10);
 		$page = $result->render();
 		$result = $result->all();
+		$num = [
+			'all' => db('ml_article')->count(),
+		];
 		foreach ($result as $key => &$value) {
 			switch ($value['type']) {
 			case '0':
@@ -47,6 +50,11 @@ class Index extends Base {
 				break;
 			}
 		}
+		$this->assign([
+			'list' => $result,
+			'page' => $page,
+			'num' => $num,
+		]);
 		$this->assign('page', $page);
 		$this->assign('list', $result);
 		return view('/list');
@@ -65,16 +73,24 @@ class Index extends Base {
 	}
 	// 网站统计
 	public function webtj() {
-		$rel = db('ml_count')->order('id desc')->paginate(10);
+		$rel = db('ml_count')->order('id desc')->paginate(20);
+		$num = [
+			'all' => db('ml_count')->count(),
+			'pc' => db('ml_count')->where('device', 'pc')->count(),
+			'mobile' => db('ml_count')->where('device', '移动')->count(),
+		];
 		$page = $rel->render();
 		$rel = $rel->all();
 		// dump($rel);
-
 		$this->assign([
 			'list' => $rel,
 			'page' => $page,
+			'num' => $num,
 		]);
 		return view('/webtj');
+	}
+	public function comment() {
+		return view('/comment');
 	}
 	// 注销登录
 	public function loginOut() {

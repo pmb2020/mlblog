@@ -368,6 +368,7 @@ width: 14px;height: 14px;margin-right: 5px;vertical-align: middle;position: rela
 .user_info span{margin-right: 20px;}
 .user_info time{margin-right: 20px;}
 .blog_text{margin-top: 20px;color: #444;min-height: 500px}
+.blog_text a{color: #3690cf;margin: 0 5px}
 .blog_text p{margin-bottom: 20px;line-height: 24px;}
 .blog_text img{max-width: 100%;height: auto;}
 .next_div{padding-top: 25px;}

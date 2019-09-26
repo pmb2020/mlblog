@@ -835,6 +835,7 @@ ul:after {
 /* 编辑器 */
 .w-e-toolbar .w-e-menu{padding: 10px 15px!important;}
 .w-e-text-container{height: 380px!important;}
+#editor a{color: #00e;margin: 0 5px}
 @media screen and (max-width:576px) {
 #editor{width: 100%!important;}
 .w-e-toolbar .w-e-menu{padding: 8px 10px!important;}

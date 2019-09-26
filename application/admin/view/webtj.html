@@ -54,16 +54,16 @@
 					</div>
 					<div class="main-box " style="">
 						<ul class="ul_tag" style="border-bottom: 0;">
-							<li class="active"><a href="#">全部(540)</a></li>
-							<li><a href="#">PC端(425)</a></li>
-							<li><a href="#">移动端(145)</a></li>
+							<li class="active"><a href="#">全部({$num.all})</a></li>
+							<li><a href="#">PC端({$num.pc})</a></li>
+							<li><a href="#">移动端({$num.mobile})</a></li>
 						</ul>
 						<table class="table addtable1">
 							<thead>
 								<tr style="background-color: #f2f2f2;">
 									<th>id</th>
 									<th>访问时间</th>
-									<th>地域</th>
+									<th>设备</th>
 									<th>来源</th>
 									<th>入口页面</th>
 									<th>访问IP</th>
@@ -76,7 +76,7 @@
 								<tr>
 									<th>{$key+1}</th>
 									<td>{$list.time}</td>
-									<td>-</td>
+									<td>{$list.device}</td>
 									<td>{$list.referer}</td>
 									<td>{$list.url}</td>
 									<td>{$list.ip}</td>
