@@ -21,7 +21,7 @@ class Base extends Controller {
 			if ($count_arr['last_time'] + 3600 < time()) {
 				db('ml_count')->insert($count_arr);
 			}
-			Cookie::set('count', db('ml_count')->max('id'), 3600);
+			Cookie::set('ml_count', db('ml_count')->max('id'), 3600);
 		}
 		db('ml_count')->where('id', Cookie::get('ml_count'))->setInc('page_num');
 
@@ -104,6 +104,9 @@ class Base extends Controller {
 		}
 		if (stripos($ua, 'Googlebot')) {
 			return '谷歌';
+		}
+		if (stripos($ua, 'bingbot')) {
+			return '必应';
 		}
 		if (stripos($ua, 'spider')) {
 			if (stripos($ua, 'sogou')) {
