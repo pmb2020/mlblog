@@ -7,6 +7,10 @@
 		<meta name="Keywords" content="爱分享,K先生,K先生的博客">
 		<meta name="Description" content="分享html模板、js特效、php源码等资源-K先生的博客">
 		<link rel="stylesheet" type="text/css" href="/__STATIC__1/css/base.css" />
+		<style type="text/css">
+			.type_ul .active{background-color: #1487ee;}
+			.type_ul .active a{color: #fff}
+		</style>
 	</head>
 	<body>
 		{include file='common/header' /}
@@ -14,7 +18,7 @@
 			<p class="top_p"><a class="a1" href="index.html">网站首页</a><a class="a2" href="index.html">爱分享</a><span>好咖啡要和朋友一起品尝，好“模板”也要和同样喜欢它的人一起分享。</span></p>
 			<div>
 				<ul class="type_ul">
-					<li style="background-color: #1487ee;"><a href="/ashare.html" style="color: #fff;">全部</a></li>
+					<li  class="active" style=""><a href="/ashare.html">全部</a></li>
 					<li><a href="/shareid/1.html">html模板</a></li>
 					<li><a href="/shareid/2.html">js特效</a></li>
 					<li><a href="/shareid/3.html">其他</a></li>
@@ -39,5 +43,13 @@
 				{$page}
 		</div>
 		{include file='common/footer' /}
+		<script type="text/javascript" src="/__STATIC__1/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="/__STATIC__1/js/base.js"></script>
+		<script type="text/javascript">
+			$('type_ul li').click(function () {
+				console.log(this);
+				this.removeClass('active');
+			})
+		</script>
 	</body>
 </html>
