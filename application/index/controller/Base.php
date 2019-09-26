@@ -22,8 +22,9 @@ class Base extends Controller {
 				db('ml_count')->insert($count_arr);
 			}
 			Cookie::set('ml_count', db('ml_count')->max('id'), 3600);
+		} else {
+			db('ml_count')->where('id', Cookie::get('ml_count'))->setInc('page_num');
 		}
-		db('ml_count')->where('id', Cookie::get('ml_count'))->setInc('page_num');
 
 	}
 	//获取访客ip(暂不使用)
