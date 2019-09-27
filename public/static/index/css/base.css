@@ -40,6 +40,9 @@ img{vertical-align: middle;
 }
 .f_r{float: right;}
 .f_l{float: left;}
+.line1{width: 100%;overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;}
 .ellipsis1{overflow: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
@@ -292,11 +295,16 @@ width: 14px;height: 14px;margin-right: 5px;vertical-align: middle;position: rela
     .d_none{display: none;}
     .md_none{display: block!important;}
 
+    .type_ul li{margin: 0 8px!important;padding: 4px 10px!important}
 	.share_ul li{width: 50%;}
-	.share_li img{height: 140px;}
+	.share_li img{height: 120px;}
+    .share_li h2{height: 40px}
 
     .flex_img .img_box{width: 35%;height: 90px}
+    .section{padding: 15px}
     .section h2{margin-bottom: 5px;font-size: 18px}
+    .flex_img .r_text{margin-left: 5px}
+    .line_h2:before{left: -25px}
     .r_text p{-webkit-line-clamp:2;line-height: 1.4;font-size: 12px}
     .text_info{padding: 0;border: 0}
     .text_info span{margin-right: 10px}

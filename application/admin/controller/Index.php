@@ -81,7 +81,19 @@ class Index extends Base {
 		];
 		$page = $rel->render();
 		$rel = $rel->all();
-		// dump($rel);
+
+		foreach ($rel as $key => &$value) {
+			if ($value['last_time'] != 0) {
+				$value['last_time'] = intval((time() - $value['last_time']) / 3600);
+				if ($value['last_time'] >= 24) {
+					$value['last_time'] = intval($value['last_time'] / 24) . '天前';
+				} else {
+					$value['last_time'] = $value['last_time'] . '小时前';
+				}
+			}
+
+		}
+		// dump($rel[0]);die();
 		$this->assign([
 			'list' => $rel,
 			'page' => $page,

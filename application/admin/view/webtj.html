@@ -1,90 +1,90 @@
 {extend name='common/base' /}
 {block name='body'}
 <div class="main" style="">
-			<div class="main-content">
-				<div class="main-top">
-					<p class="mbaoxie"><a href="/">首页</a><span>/</span>网站统计</p>
-					<p class="main-gg">公告：欢迎光临我的后台管理系统，我求求你嫁给w我！</p>
-				</div>
-
-				<div class="box_padd30">
-					<div class="main-box" style="">
-						<p style="font-size: 15px;font-weight: 400;">网站流量</p>
-						<table class="table add_border0">
-							<thead>
-								<tr>
-									<td></td>
-									<td>浏览量(PV)</td>
-									<td>访客数(UV)</td>
-									<td>IP数</td>
-									<td>平均访问时长</td>
-								</tr>
-							</thead>
-							<tbody class="right_border">
-								<tr>
-									<td>今日</td>
-									<td>45</td>
-									<td>4</td>
-									<td>2</td>
-									<td>00:54</td>
-								</tr>
-								<tr>
-									<td>昨日</td>
-									<td>425</td>
-									<td>42</td>
-									<td>23</td>
-									<td>00:54</td>
-								</tr>
-								<tr>
-									<td>最近7天</td>
-									<td>4775</td>
-									<td>4454</td>
-									<td>2455</td>
-									<td>00:54</td>
-								</tr>
-								<tr>
-									<td>最近30天</td>
-									<td>67275</td>
-									<td>24454</td>
-									<td>22455</td>
-									<td>00:54</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="main-box " style="">
-						<ul class="ul_tag" style="border-bottom: 0;">
-							<li class="active"><a href="#">全部({$num.all})</a></li>
-							<li><a href="#">PC端({$num.pc})</a></li>
-							<li><a href="#">移动端({$num.mobile})</a></li>
-						</ul>
-						<table class="table addtable1">
-							<thead>
-								<tr style="background-color: #f2f2f2;">
-									<th>id</th>
-									<th>访问时间</th>
-									<th>设备</th>
-									<th>来源</th>
-									<th>入口页面</th>
-									<th>访问IP</th>
-									<th>上次访问</th>
-									<th>访问页数</th>
-								</tr>
-							</thead>
-							<tbody>
-								{volist id='list' name='list'}
-								<tr>
-									<th>{$key+1}</th>
-									<td>{$list.time}</td>
-									<td>{$list.device}</td>
-									<td>{$list.referer}</td>
-									<td>{$list.url}</td>
-									<td>{$list.ip}</td>
-									<td>-</td>
-									<td>{$list.page_num}</td>
-								</tr>
-								{/volist}
-							<!-- 	<tr>
+    <div class="main-content">
+        <div class="main-top">
+            <p class="mbaoxie"><a href="/">首页</a><span>/</span>网站统计</p>
+            <p class="main-gg">公告：欢迎光临我的后台管理系统，我求求你嫁给w我！</p>
+        </div>
+        <div class="box_padd30">
+            <div class="main-box" style="">
+                <p style="font-size: 15px;font-weight: 400;">网站流量</p>
+                <table class="table add_border0">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td>浏览量(PV)</td>
+                            <td>访客数(UV)</td>
+                            <td>IP数</td>
+                            <td>平均访问时长</td>
+                        </tr>
+                    </thead>
+                    <tbody class="right_border">
+                        <tr>
+                            <td>今日</td>
+                            <td>45</td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>00:54</td>
+                        </tr>
+                        <tr>
+                            <td>昨日</td>
+                            <td>425</td>
+                            <td>42</td>
+                            <td>23</td>
+                            <td>00:54</td>
+                        </tr>
+                        <tr>
+                            <td>最近7天</td>
+                            <td>4775</td>
+                            <td>4454</td>
+                            <td>2455</td>
+                            <td>00:54</td>
+                        </tr>
+                        <tr>
+                            <td>最近30天</td>
+                            <td>67275</td>
+                            <td>24454</td>
+                            <td>22455</td>
+                            <td>00:54</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="main-box " style="">
+                <ul class="ul_tag" style="border-bottom: 0;">
+                    <li class="active"><a href="#">全部({$num.all})</a></li>
+                    <li><a href="#">PC端({$num.pc})</a></li>
+                    <li><a href="#">移动端({$num.mobile})</a></li>
+                </ul>
+                <table class="table addtable1" style="table-layout: fixed;">
+                    <thead>
+                        <tr style="background-color: #f2f2f2;">
+                            <th width="5%">id</th>
+                            <th width="20%">访问时间</th>
+                            <th width="10%">设备</th>
+                            <th width="25%">来源</th>
+                            <th width="10%">入口页面</th>
+                            <th width="10%">访问IP</th>
+                            <th width="10%">上次访问</th>
+                            <th width="10%">访问页数</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {volist id='list' name='list'}
+                        <tr>
+                            <th>{$key+1}</th>
+                            <td>{$list.time}</td>
+                            <td>{$list.device}</td>
+                            <td><a class="line1" title="{$list.referer}" href="{$list.referer}">{$list.referer}</a></td>
+                            <!-- <td style="overflow: hidden;"><span class="ellipsis1" style="width: 100%;">{$list.referer}</span> </td> -->
+                            <td>{$list.url}</td>
+                            <td>{$list.ip}</td>
+                            <td>{$list.last_time}</td>
+                            <td>{$list.page_num}</td>
+                        </tr>
+                        {/volist}
+                        <!-- 	<tr>
 									<th>1</th>
 									<td>2019/09/01 <br>20:44:50</td>
 									<td>北京</td>
@@ -94,14 +94,11 @@
 									<td>52"</td>
 									<td>2</td>
 								</tr> -->
-														
-							</tbody>
-						</table>
-						{$page}
-
-					</div>
-
-				</div>
-			</div>
-		</div>
+                    </tbody>
+                </table>
+                {$page}
+            </div>
+        </div>
+    </div>
+</div>
 {/block}

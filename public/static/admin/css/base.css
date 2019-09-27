@@ -29,6 +29,9 @@ ul:after {
 	clear: both;
 	display: block;
 }
+.line1{width: 100%;overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;}
 /* 我的自定义样式 */
 .row {
 	display: -webkit-box;
