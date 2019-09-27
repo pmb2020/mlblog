@@ -84,7 +84,7 @@ class Index extends Base {
 
 		foreach ($rel as $key => &$value) {
 			if ($value['last_time'] != 0) {
-				$value['last_time'] = intval((time() - $value['last_time']) / 3600);
+				$value['last_time'] = intval((strtotime($value['time']) - $value['last_time']) / 3600);
 				if ($value['last_time'] >= 24) {
 					$value['last_time'] = intval($value['last_time'] / 24) . '天前';
 				} else {
@@ -93,7 +93,7 @@ class Index extends Base {
 			}
 
 		}
-		// dump($rel[0]);die();
+		// dump($rel[0]['time']);die();
 		$this->assign([
 			'list' => $rel,
 			'page' => $page,
