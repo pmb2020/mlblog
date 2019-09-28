@@ -1,5 +1,7 @@
 <?php
 namespace app\admin\controller;
+use app\admin\model\MlCount;
+use think\Model;
 use think\Session;
 
 /**
@@ -73,15 +75,49 @@ class Index extends Base {
 	}
 	// 网站统计
 	public function webtj() {
-		$rel = db('ml_count')->order('id desc')->paginate(20);
+		$type = request()->param('type');
+		if ($type != 'pc' && $type != 'mobile') {
+			$map = '';
+		} else {
+			if ($type == 'mobile') {
+				$type = '移动';
+			}
+			$map['device'] = $type;
+		}
+
+		$rel = db('ml_count')->where($map)->order('id desc')->paginate(20);
 		$num = [
 			'all' => db('ml_count')->count(),
 			'pc' => db('ml_count')->where('device', 'pc')->count(),
 			'mobile' => db('ml_count')->where('device', '移动')->count(),
 		];
 		$page = $rel->render();
-		$rel = $rel->all();
+		$rel = $this->chageTime($rel->all());
+		$this->assign([
+			'list' => $rel,
+			'page' => $page,
+			'num' => $num,
+		]);
+		return view('/webtj');
+	}
+	public function webtjType($id) {
+		return $id;
+	}
+	public function comment() {
+		return view('/comment');
+	}
 
+	public function webset() {
+		return view('/webset');
+	}
+	// 注销登录
+	public function loginOut() {
+		Session::clear();
+		$this->success('退出成功！', url('/admin/login'), '', 1);
+	}
+
+	//转换访客记录中的上次访问时间
+	function chageTime($rel) {
 		foreach ($rel as $key => &$value) {
 			if ($value['last_time'] != 0) {
 				$value['last_time'] = intval((strtotime($value['time']) - $value['last_time']) / 3600);
@@ -91,24 +127,10 @@ class Index extends Base {
 					$value['last_time'] = $value['last_time'] . '小时前';
 				}
 			}
-
 		}
-		// dump($rel[0]['time']);die();
-		$this->assign([
-			'list' => $rel,
-			'page' => $page,
-			'num' => $num,
-		]);
-		return view('/webtj');
+		return $rel;
 	}
-	public function comment() {
-		return view('/comment');
-	}
-	// 注销登录
-	public function loginOut() {
-		Session::clear();
-		$this->success('退出成功！', url('/admin/login'), '', 1);
-	}
+
 	// 上传图片
 	public function upload() {
 		$file = request()->file('file');

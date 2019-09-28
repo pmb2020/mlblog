@@ -53,19 +53,19 @@
             </div>
             <div class="main-box " style="">
                 <ul class="ul_tag" style="border-bottom: 0;">
-                    <li class="active"><a href="#">全部({$num.all})</a></li>
-                    <li><a href="#">PC端({$num.pc})</a></li>
-                    <li><a href="#">移动端({$num.mobile})</a></li>
+                    <li class=""><a href="/admin/webtj.html">全部({$num.all})</a></li>
+                    <li><a href="/admin/webtj/type/pc.html">PC端({$num.pc})</a></li>
+                    <li><a href="/admin/webtj/type/mobile.html">移动端({$num.mobile})</a></li>
                 </ul>
                 <table class="table addtable1" style="table-layout: fixed;">
                     <thead>
                         <tr style="background-color: #f2f2f2;">
                             <th width="5%">id</th>
                             <th width="20%">访问时间</th>
-                            <th width="10%">设备</th>
+                            <th width="5%">设备</th>
                             <th width="25%">来源</th>
                             <th width="10%">入口页面</th>
-                            <th width="10%">访问IP</th>
+                            <th width="15%">访问IP</th>
                             <th width="10%">上次访问</th>
                             <th width="10%">访问页数</th>
                         </tr>
@@ -76,8 +76,7 @@
                             <th>{$key+1}</th>
                             <td>{$list.time}</td>
                             <td>{$list.device}</td>
-                            <td><a class="line1" title="{$list.referer}" href="{$list.referer}">{$list.referer}</a></td>
-                            <!-- <td style="overflow: hidden;"><span class="ellipsis1" style="width: 100%;">{$list.referer}</span> </td> -->
+                            <td><a target="_blank" class="line1" title="{$list.referer}" href="{$list.referer}">{$list.referer}</a></td>
                             <td>{$list.url}</td>
                             <td>{$list.ip}</td>
                             <td>{$list.last_time}</td>
@@ -101,4 +100,18 @@
         </div>
     </div>
 </div>
+{/block}
+{block name='myjs'}
+{__block__}
+<script type="text/javascript">
+    //网站统计的小分类切换
+    $(function () {
+        var url=window.location.href;
+        var num=url.indexOf('.html');
+        var tt=url.substring(num-2,num);
+        if (tt=='tj') {$('.ul_tag li:eq(0)').addClass('active')}
+        if (tt=='pc') {$('.ul_tag li:eq(1)').addClass('active')}
+        if (tt=='le') {$('.ul_tag li:eq(2)').addClass('active')}
+    })
+</script>
 {/block}
