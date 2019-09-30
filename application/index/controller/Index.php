@@ -5,7 +5,7 @@ use think\Db;
 
 class Index extends Base {
 	public function index() {
-		$result = db('ml_article')->where('status', 0)->field('id,type,title,content,time,read_num,comment_num')->order('id desc')->paginate(10);
+		$result = db('ml_article')->order('is_top desc,id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
 		$this->assign('page', $page);
@@ -14,7 +14,7 @@ class Index extends Base {
 	}
 
 	public function ajishu() {
-		$result = db('ml_article')->where('status', 0)->where('type', 1)->field('id,type,title,content,time,read_num,comment_num')->order('id desc')->paginate(10);
+		$result = db('ml_article')->where('status', 0)->where('type', 1)->order('is_top desc,id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
 		$this->assign('page', $page);
@@ -23,7 +23,7 @@ class Index extends Base {
 	}
 
 	public function alife() {
-		$result = db('ml_article')->where('status', 0)->where('type', 0)->field('id,type,title,content,time,read_num,comment_num')->order('id desc')->paginate(10);
+		$result = db('ml_article')->where('status', 0)->where('type', 0)->order('is_top desc,id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
 		$this->assign('page', $page);
@@ -31,7 +31,7 @@ class Index extends Base {
 		return view('/alife');
 	}
 	public function ashare() {
-		$result = db('ml_article')->where('status', 0)->where('type', '>', 3)->field('id,type,title,content,time,read_num,comment_num')->order('id desc')->paginate(10);
+		$result = db('ml_article')->where('status', 0)->where('type', '>', 3)->order('is_top desc,id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
 		$this->assign('page', $page);
@@ -39,7 +39,7 @@ class Index extends Base {
 		return view('/ashare');
 	}
 	public function shareId($id) {
-		$result = db('ml_article')->where('status', 0)->where('type', $id + 3)->field('id,type,title,content,time,read_num,comment_num')->order('id desc')->paginate(10);
+		$result = db('ml_article')->where('status', 0)->where('type', $id + 3)->order('is_top desc,id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
 		$this->assign('page', $page);

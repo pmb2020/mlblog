@@ -1,9 +1,9 @@
 {extend name='common/base' /}
 
 {block name='seo'}
-<title>爱技术 - K先生的博客</title>
-<meta name="Keywords" content="爱技术,K先生,K先生的博客">
-<meta name="Description" content="分享个人学习经验和技术-K先生的博客">
+<title>爱技术 - K先生个人博客</title>
+<meta name="Keywords" content="爱技术,K先生,K先生个人博客">
+<meta name="Description" content="分享个人学习经验和技术-K先生个人博客">
 {/block}
 
 {block name='leftBody'}
@@ -14,7 +14,7 @@
 <div style="margin-top: 15px;">
 	{volist id='list' name='list' empty='暂时还没有数据呢'}
 		{eq name='list.titleimg' value='1'}
-			<section class="section hot_sec">
+			<section class="section {neq name='list.is_top' value='0'}hot_sec{/neq}">
 				<div class="flex_img">
 					<div class="img_box">
 						<img src="/static/titleimg/{$list.id}.jpg" onerror="{this.src='/static/index/imgs/01.jpg'}" title="{$list.title}" alt="{$list.title}"></div>
@@ -30,7 +30,7 @@
 				</div>
 			</section>
 		{else/}
-		<section class="section">
+		<section class="section {neq name='list.is_top' value='0'}hot_sec{/neq}">
 			<div class="flex_img">
 				<div class="r_text">
 					<h2 class="line_h2" style=""><a href="info/{$list.id}.html">{$list.title}</a></h2>

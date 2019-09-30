@@ -1,59 +1,68 @@
 {extend name='common/base' /}
-
 {block name='body'}
 <div class="main" style="">
-			<div class="main-content">
-				<div class="main-top">
-					<p class="mbaoxie"><a href="/">首页</a><span>/</span>文章列表</p>
-					<p class="main-gg">公告：欢迎光临我的后台管理系统，我求求你！</p>
-				</div>
-				<div class="box_padd30">
-					<div class="main-box">
-						<ul class="ul_tag">
-							<li class="active"><a href="#">全部({$num.all})</a></li>
-							<li><a href="#">公开(0)</a></li>
-							<li><a href="#">私密(0)</a></li>
-							<li><a href="#">草稿箱(0)</a></li>
-						</ul>
-						<ul class="list_ul">
-							{volist id='list' name='list'}
-							<li>
-								<h2 class="list_title"><a target="_blank" href="/info/{$list.id}.html">{$list.title}</a></h2>
-								<div class="list_info">
-									<div class="list_info_left">
-										<span>{$list.type}</span>
-										<span>{$list.time}</span>
-										<span><i class="fa fa-eye" aria-hidden="true"></i>{$list.read_num}</span>
-										<span><i class="fa fa-commenting-o" aria-hidden="true"></i>{$list.comment_num}</span>
-									</div>
-									<div class="list_info_right">
-										<a class="d-none" href="#">设为私密</a>
-										<a class="d-none" href="#">编辑</a>
-										<a class="del_a" href="javascript:void(0)" onclick="del({$list.id})">删除</a>
-									</div>
-								</div>
-							</li>
-							{/volist}
-							{$page}
-							
-						</ul>
-					</div>
-					
-				</div>
-			</div>
+    <div class="main-content">
+        <div class="main-top">
+            <p class="mbaoxie"><a href="/">首页</a><span>/</span>文章列表</p>
+            <p class="main-gg">公告：欢迎光临我的后台管理系统，我求求你！</p>
+        </div>
+        <div class="box_padd30">
+            <div class="main-box">
+                <ul class="ul_tag">
+                    <li class=""><a href="/admin/list.html">全部({$num.all})</a></li>
+                    <li><a href="/admin/list/type/top.html">置顶({$num.top})</a></li>
+                    <li><a href="/admin/list/type/public.html">公开({$num.public})</a></li>
+                    <li><a href="/admin/list/type/private.html">私密({$num.private})</a></li>
+                    <!-- <li><a href="#">草稿箱(0)</a></li> -->
+                </ul>
+                <ul class="list_ul">
+                    {volist id='list' name='list'}
+                    <li>
+                        <h2 class="list_title"><a target="_blank" href="/info/{$list.id}.html">{$list.title}</a></h2>
+                        <div class="list_info">
+                            <div class="list_info_left">
+                                <span>{$list.type}</span>
+                                <span>{$list.time}</span>
+                                <span><i class="fa fa-eye" aria-hidden="true"></i>{$list.read_num}</span>
+                                <span><i class="fa fa-commenting-o" aria-hidden="true"></i>{$list.comment_num}</span>
+                            </div>
+                            <div class="list_info_right">
+                                <a class="d-none" href="#">设为私密</a>
+                                <a class="d-none" href="#">编辑</a>
+                                <a class="del_a" href="javascript:void(0)" onclick="del({$list.id})">删除</a>
+                            </div>
+                        </div>
+                    </li>
+                    {/volist}
+                    {$page}
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 {/block}
 {block name='myjs'}
 {__block__}
 <script type="text/javascript">
-	 function del(id) {
-			if (window.confirm('您确定要删除吗？')) {
-				var url="del/id1.html";
-				var tiaourl = url.replace('id1',id);
-				window.location.href = tiaourl;
-			}else{
-				return false;
-			}
-		} 
+function del(id) {
+    if (window.confirm('您确定要删除吗？')) {
+        var url = "/admin/del/id1.html";
+        var tiaourl = url.replace('id1', id);
+        window.location.href = tiaourl;
+    } else {
+        return false;
+    }
+}
+
+//文章列表的小分类切换
+$(function() {
+    var url = window.location.href;
+    var num = url.indexOf('.html');
+    var tt = url.substring(num - 2, num);
+    if (tt == 'op') { $('.ul_tag li:eq(1)').addClass('active') }
+    if (tt == 'st') { $('.ul_tag li:eq(0)').addClass('active') }
+    if (tt == 'ic') { $('.ul_tag li:eq(2)').addClass('active') }
+    if (tt == 'te') { $('.ul_tag li:eq(3)').addClass('active') }
+})
 </script>
 {/block}

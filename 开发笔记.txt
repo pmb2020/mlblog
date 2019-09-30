@@ -23,7 +23,8 @@ git
 博客数据库设计
 1、文章表
 id
-status      状态：0默认 1置顶 2加密
+is_top      置顶
+status      状态：0默认 1加密
 type		分类：1爱技术 2 爱分享 3爱生活 4爱拼搏
 title
 content
@@ -36,13 +37,18 @@ CREATE TABLE `study`.`ml_article` ( `id` INT NOT NULL AUTO_INCREMENT , `status` 
 
 2、评论表
 id
-article_id  文章id
-p_id        默认0为一级评论，其他则为子评论
-title
-name
-time
-ip
-top_time 上次评论时间
+blog_id  	博客文章id
+com_id      默认0为一级评论，其他则为子评论
+name        评论人昵称
+email		评论人邮箱（接收通知）
+title		评论内容
+time 		时间
+zan_num     点赞数
+ip			ip
+address     地址
+last_time   上次评论时间
+
+评论->有人回复->(需要邮件通知)
 
 3、访客记录表
 id

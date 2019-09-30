@@ -15,10 +15,13 @@ class Index extends Base {
 	}
 
 	public function write() {
-		Session::set('max_id', db('ml_article')->max('id'));
+		// Session::set('max_id', db('ml_article')->max('id'));
 		if (request()->isPost()) {
 			$data = input('post.');
-			// dump($data);die();
+			if ($data['status'] == 2) {
+				unset($data['status']);
+				$data['is_top'] = 1;
+			}
 			$res = db('ml_article')->insert($data);
 			if ($res == 1) {
 				$this->success('添加成功！', url('/admin/list'), '', 1);
@@ -30,11 +33,26 @@ class Index extends Base {
 		return view('/write');
 	}
 	public function list() {
-		$result = db('ml_article')->field('id,type,title,time,read_num,comment_num')->order('id desc')->paginate(10);
+		$type = request()->param('type');
+		// 0默认 1加密
+		// $map = '';
+		$map = 'status > -1';
+		if ($type == 'private') {
+			$map = 'status = 1';
+		}if ($type == 'public') {
+			$map = 'status = 0';
+		}if ($type == 'top') {
+			$map = 'is_top <> 0';
+		}
+		// dump($map);
+		$result = db('ml_article')->where($map)->field('id,type,title,time,read_num,comment_num')->order('id desc')->paginate(10);
 		$page = $result->render();
 		$result = $result->all();
 		$num = [
 			'all' => db('ml_article')->count(),
+			'top' => db('ml_article')->where('is_top <> 0')->count(),
+			'public' => db('ml_article')->where('status = 0')->count(),
+			'private' => db('ml_article')->where('status = 2')->count(),
 		];
 		foreach ($result as $key => &$value) {
 			switch ($value['type']) {
