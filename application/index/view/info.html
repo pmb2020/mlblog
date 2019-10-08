@@ -8,7 +8,7 @@
 
 {block name='leftBody'}
 <div style="background-color: #fff;padding: 10px 15px;font-size: 14px;">
-	<p style="color: #666;">当前位置：<a href="/">首页</a> > <a href="#">{$data.type}</a> > <a href="#">正文1</a></p>
+	<p style="color: #666;">当前位置：<a href="/">首页</a> > <a href="#">{$data.type}</a> > <a href="#">正文</a></p>
 </div>
 <div class="content">
 	<h2 class="line_h2">{$data.title}</h2>
@@ -51,6 +51,11 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		$('pre').laycode({ title:'K先生的代码',skin: 1,by: false});
+		//文章h3标题的文章样式	
+		var h3=$('.blog_text h3');
+		h3.each(function () {
+			$(this).html('<span>'+$(this).text()+'</span>');
+		})
 	})
 </script>
 {/block}
