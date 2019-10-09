@@ -79,6 +79,7 @@ class Index extends Base {
 
 		}
 		$this->assign([
+			'hot_data' => hotData(),
 			'data' => type($res1),
 			'next_title' => $data1,
 			'top_title' => $data2,

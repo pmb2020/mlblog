@@ -2,7 +2,7 @@
     <p class="div_top">热门文章</p>
     {volist id='hot_data' name='hot_data'}
     	<div class="flex_img min_img_p" style="margin-bottom: 15px;">
-    	{eq name='list.titleimg' value='1'}
+    	{eq name='hot_data.titleimg' value='1'}
         <img style="" src="/static/titleimg/{$hot_data.id}.jpg">
         {else/}
         <img style="" src="/static/index/imgs/default.jpg">
