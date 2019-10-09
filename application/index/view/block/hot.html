@@ -1,39 +1,23 @@
-<aside style="margin-top: 15px;">
-						<p class="div_top">热门文章</p>
-						<div class="flex_img min_img_p" style="margin-bottom: 15px;">
-							<img style="" src="/__STATIC__1/imgs/default.jpg" onerror="{this.src='/static/index/imgs/default.jpg'}">
-							<div class="r_text">
-								<h3>北漂之旅～新的征程</h3>
-								<p class="bottom_num"><time>爱分享</time><span>阅读数 2017</span></p>
-							</div>
-						</div>
-						<div class="flex_img min_img_p" style="margin-bottom: 15px;">
-							<img style="" src="/__STATIC__1/imgs/01.jpg" onerror="{this.src='/static/index/imgs/default.jpg'}">
-							<div class="r_text">
-								<h3>北漂之旅～新的征程</h3>
-								<p class="bottom_num"><time>2019-6-2</time><span>阅读数 2017</span></p>
-							</div>
-						</div>
-						<div class="flex_img min_img_p" style="margin-bottom: 15px;">
-							<img style="" src="/__STATIC__1/imgs/01.jpg" onerror="{this.src='/static/index/imgs/default.jpg'}">
-							<div class="r_text">
-								<h3>原来这就是生活啊</h3>
-								<p class="bottom_num"><time>2019-6-2</time><span>阅读数 2017</span></p>
-							</div>
-						</div>
-						<div class="flex_img min_img_p" style="margin-bottom: 15px;">
-							<img style="" src="/__STATIC__1/imgs/01.jpg" onerror="{this.src='/static/index/imgs/default.jpg'}">
-							<div class="r_text">
-								<h3>bootstrap4实现侧边导航栏带隐藏按钮</h3>
-								<p class="bottom_num"><time>2019-6-2</time><span>阅读数 2017</span></p>
-							</div>
-						</div>
-						<div class="flex_img min_img_p">
-							<img style="" src="http://www.yangqq.com/d/file/jstt/css3/2014-12-09/1cba05d9e0c7cfcfa897394b85f7e5f9.jpg" onerror="{this.src='/static/index/imgs/default.jpg'}">
-							<div class="r_text">
-								<h3>爱一个人就非要在一起吗</h3>
-								<p class="bottom_num"><time>2019-6-2</time><span>阅读数 231</span></p>
-							</div>
-						</div>
-
-					</aside>
+<aside class="d_none" style="margin-top: 15px;">
+    <p class="div_top">热门文章</p>
+    {volist id='hot_data' name='hot_data'}
+    	<div class="flex_img min_img_p" style="margin-bottom: 15px;">
+    	{eq name='list.titleimg' value='1'}
+        <img style="" src="/static/titleimg/{$hot_data.id}.jpg">
+        {else/}
+        <img style="" src="/static/index/imgs/default.jpg">
+        {/eq}
+        <div class="r_text">
+            <h3>{$hot_data.title}</h3>
+            <p class="bottom_num"><time>{$hot_data.time}</time><span>浏览 {$hot_data.read_num}</span></p>
+        </div>
+    </div>
+    {/volist}
+   <!--  <div class="flex_img min_img_p">
+        <img style="" src="http://www.yangqq.com/d/file/jstt/css3/2014-12-09/1cba05d9e0c7cfcfa897394b85f7e5f9.jpg" onerror="{this.src='/static/index/imgs/default.jpg'}">
+        <div class="r_text">
+            <h3>爱一个人就非要在一起吗</h3>
+            <p class="bottom_num"><time>2019-6-2</time><span>阅读数 231</span></p>
+        </div>
+    </div> -->
+</aside>

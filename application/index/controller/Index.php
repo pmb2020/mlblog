@@ -9,8 +9,11 @@ class Index extends Base {
 		$result = db('ml_article')->order('is_top desc,id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
-		$this->assign('page', $page);
-		$this->assign('list', $result);
+		$this->assign([
+			'hot_data' => hotData(),
+			'page' => $page,
+			'list' => $result,
+		]);
 		return view('/index');
 	}
 
@@ -18,8 +21,11 @@ class Index extends Base {
 		$result = db('ml_article')->where('status', 0)->where('type', 1)->order('is_top desc,id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
-		$this->assign('page', $page);
-		$this->assign('list', $result);
+		$this->assign([
+			'hot_data' => hotData(),
+			'page' => $page,
+			'list' => $result,
+		]);
 		return view('/ajishu');
 	}
 
@@ -27,8 +33,11 @@ class Index extends Base {
 		$result = db('ml_article')->where('status', 0)->where('type', 0)->order('is_top desc,id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
-		$this->assign('page', $page);
-		$this->assign('list', $result);
+		$this->assign([
+			'hot_data' => hotData(),
+			'page' => $page,
+			'list' => $result,
+		]);
 		return view('/alife');
 	}
 	public function ashare() {
@@ -87,7 +96,15 @@ class Index extends Base {
 		return view('/about');
 	}
 }
-
+//热门文章数据
+function hotData() {
+	$hot_data = Db::query("select id,type,title,read_num,time from ml_article order by read_num desc limit 5");
+	$hot_data = changeType($hot_data);
+	foreach ($hot_data as $key => &$value) {
+		$value['time'] = substr($value['time'], 0, 10);
+	}
+	return $hot_data;
+}
 function type($arr) {
 	switch ($arr['type']) {
 	case '0':
@@ -153,7 +170,9 @@ function changeType($result) {
 		$img_arr[$key] = explode('.', $value)[0];
 	}
 	foreach ($result as $key => &$value) {
-		$value['content'] = mb_substr(strip_tags($value['content']), 0, 180, 'utf-8');
+		if (!empty($value['content'])) {
+			$value['content'] = mb_substr(strip_tags($value['content']), 0, 180, 'utf-8');
+		}
 		switch ($value['type']) {
 		case '0':
 			$value['type'] = '爱生活';
