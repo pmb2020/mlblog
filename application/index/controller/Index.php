@@ -94,6 +94,7 @@ class Index extends Base {
 		return view('/gbook');
 	}
 	public function about() {
+		$this->assign('hot_data', hotData());
 		return view('/about');
 	}
 }
