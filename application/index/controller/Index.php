@@ -18,7 +18,7 @@ class Index extends Base {
 	}
 
 	public function ajishu() {
-		$result = db('ml_article')->where('status', 0)->where('type', 1)->order('is_top desc,id desc')->paginate(10);
+		$result = db('ml_article')->where('type', 1)->order('is_top desc,id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
 		$this->assign([
@@ -30,7 +30,7 @@ class Index extends Base {
 	}
 
 	public function alife() {
-		$result = db('ml_article')->where('status', 0)->where('type', 0)->order('is_top desc,id desc')->paginate(10);
+		$result = db('ml_article')->where('type', 0)->order('is_top desc,id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
 		$this->assign([
@@ -41,7 +41,7 @@ class Index extends Base {
 		return view('/alife');
 	}
 	public function ashare() {
-		$result = db('ml_article')->where('status', 0)->where('type', '>', 3)->order('is_top desc,id desc')->paginate(10);
+		$result = db('ml_article')->where('type', '>', 3)->order('is_top desc,id desc')->paginate(10);
 		$page = $result->render();
 		$result = changeType($result->all());
 		$this->assign('page', $page);
