@@ -10,7 +10,8 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
-use think\Session;
+// use think\Session;
 function rename1() {
-	return Session::get('max_id') + 1;
+	// Session::set('max_id', db('ml_article')->max('id'));
+	return db('ml_article')->max('id');
 }

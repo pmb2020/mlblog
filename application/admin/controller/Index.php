@@ -15,7 +15,6 @@ class Index extends Base {
 	}
 
 	public function write() {
-		// Session::set('max_id', db('ml_article')->max('id'));
 		if (request()->isPost()) {
 			$data = input('post.');
 			if ($data['status'] == 2) {

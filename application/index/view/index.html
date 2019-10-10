@@ -30,7 +30,7 @@
 					<div class="img_box">
 						<img src="/static/titleimg/{$list.id}.jpg" onerror="{this.src='/static/index/imgs/default.jpg'}" alt="{$list.title}" title="{$list.title}"></div>
 					<div class="r_text">
-						<h2 class="ellipsis1"><a href="info/{$list.id}.html">{$list.title}</a></h2>
+						<h2 class="ellipsis1"><a target="_blank" href="info/{$list.id}.html">{$list.title}</a></h2>
 						<p class="ellipsis3">{$list.content}</p>
 						<div class="text_info">
 							<span><i id="user_ico" class="ico"></i>K先生</span>
@@ -44,7 +44,7 @@
 		<section class="section {neq name='list.is_top' value='0'}hot_sec{/neq}">
 			<div class="flex_img">
 				<div class="r_text">
-					<h2 class="line_h2" style=""><a href="info/{$list.id}.html">{$list.title}</a></h2>
+					<h2 class="line_h2" style=""><a target="_blank" href="info/{$list.id}.html">{$list.title}</a></h2>
 					<p class="ellipsis2" style="margin-bottom: 45px;">{$list.content}</p>
 					<div class="text_info">
 						<span><i id="user_ico" class="ico"></i><a href="#">K先生</a></span>
@@ -68,8 +68,8 @@
 	<aside style="margin-top: 15px;min-height: 120px;">
 		<p class="div_top">友情链接</p>
 		<ul class="link_ul">
-			<li><a href="#">杨青博客</a></li>
-			<li><a href="#">K先生的博客</a></li>
+			<li><a href="http://daohang.lusongsong.com/" target="_blank" title="博客大全">博客大全</a></li>
+			<li><a href="http://www.gold404.cn/" target="_blank" title="K先生个人博客">K先生个人博客</a></li>
 		</ul>
 	</aside>
 {/block}

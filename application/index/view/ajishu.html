@@ -19,7 +19,7 @@
 					<div class="img_box">
 						<img src="/static/titleimg/{$list.id}.jpg" onerror="{this.src='/static/index/imgs/01.jpg'}" title="{$list.title}" alt="{$list.title}"></div>
 					<div class="r_text">
-						<h2 class="ellipsis1"><a href="info/{$list.id}.html">{$list.title}</a></h2>
+						<h2 class="ellipsis1"><a target="_blank" href="info/{$list.id}.html">{$list.title}</a></h2>
 						<p class="ellipsis3">{$list.content}</p>
 						<div class="text_info">
 							<span><i id="user_ico" class="ico"></i>林中鸟</span>
@@ -33,7 +33,7 @@
 		<section class="section {neq name='list.is_top' value='0'}hot_sec{/neq}">
 			<div class="flex_img">
 				<div class="r_text">
-					<h2 class="line_h2" style=""><a href="info/{$list.id}.html">{$list.title}</a></h2>
+					<h2 class="line_h2" style=""><a target="_blank" href="info/{$list.id}.html">{$list.title}</a></h2>
 					<p class="ellipsis2" style="margin-bottom: 45px;">{$list.content}</p>
 					<div class="text_info">
 						<span><i id="user_ico" class="ico"></i><a href="#">K先生</a></span>

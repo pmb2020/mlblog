@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		{block name='seo'}
-		<title>K先生的博客 - 分享资源和学习经验的个人博客-K先生的博客</title>
-		<meta name="Keywords" content="K先生,我不是我,我不是我的博客,K先生的博客">
-		<meta name="Description" content="K先生的博客，一个分享html、php源码等资源以及交流学习技术的个人博客！K先生是我的影，那些年我踩过的坑，不想让别人再踩，因为，我深知其中的苦和泪。">
-		{/block}
-		<link rel="stylesheet" type="text/css" href="/__STATIC__2/lib/fonticon/css/font-awesome.min.css" />
-		<link rel="stylesheet" type="text/css" href="/__STATIC__1/css/base.css" />
-		<link rel="stylesheet" type="text/css" href="/__STATIC__1/css/banner.css" />
-		<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?279d0769b1cb6bfa4f26101b32f22a05";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 
-	</head>
-	<body>
-		{include file='common/header' /}
-		<div class="container" style="margin-top: 15px">
-			<div class="row">
-				<div class="col-md-7">
-					{block name='leftBody'}{/block}
-				</div>				
-				<div class="col-md-3">
-					{block name='rightBody'}
-					{include file='block/author' /}
-					{include file='block/date' /}
-					{include file='block/hot' /}
-					{include file='block/rand' /}
-					{/block}
-				</div>				
-			</div>
-		</div>
-		{include file='common/footer' /}
-		{block name='myjs'}
-		<script type="text/javascript" src="/__STATIC__1/js/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="/__STATIC__1/js/base.js"></script>
-		{/block}
-		
-	</body>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    {block name='seo'}
+    <title>K先生的博客 - 分享资源和学习经验的个人博客-K先生的博客</title>
+    <meta name="Keywords" content="K先生,我不是我,我不是我的博客,K先生的博客">
+    <meta name="Description" content="K先生的博客，一个分享html、php源码等资源以及交流学习技术的个人博客！K先生是我的影，那些年我踩过的坑，不想让别人再踩，因为，我深知其中的苦和泪。">
+    {/block}
+    <link rel="stylesheet" type="text/css" href="/__STATIC__2/lib/fonticon/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/__STATIC__1/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/__STATIC__1/css/banner.css" />
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?279d0769b1cb6bfa4f26101b32f22a05";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+
+<body>
+    {include file='common/header' /}
+    <div class="container" style="margin-top: 15px">
+        <div class="row">
+            <div class="col-md-7">
+                {block name='leftBody'}{/block}
+            </div>
+            <div class="col-md-3">
+                {block name='rightBody'}
+                {include file='block/author' /}
+                {include file='block/date' /}
+                {include file='block/hot' /}
+                {include file='block/rand' /}
+                {/block}
+            </div>
+        </div>
+    </div>
+    {include file='common/footer' /}
+    {block name='myjs'}
+    <script type="text/javascript" src="/__STATIC__1/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/__STATIC__1/js/base.js"></script>
+    {/block}
+</body>
+
 </html>
