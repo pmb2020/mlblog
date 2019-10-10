@@ -58,7 +58,7 @@ class Index extends Base {
 	}
 	public function info($id) {
 		//阅读量+1
-		Db::table('ml_article')->where('status', 0)->where('id', $id)->setInc('read_num');
+		Db::table('ml_article')->where('id', $id)->setInc('read_num');
 		$res1 = db('ml_article')->where('id', $id)->find();
 		$data1 = db('ml_article')->where("id", ">", $res1['id'])->field('id,title')->order("id", "asc")->find();
 		$data2 = db('ml_article')->where("id", "<", $res1['id'])->field('id,title')->order("id", "desc")->find();

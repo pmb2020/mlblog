@@ -13,5 +13,5 @@
 // use think\Session;
 function rename1() {
 	// Session::set('max_id', db('ml_article')->max('id'));
-	return db('ml_article')->max('id');
+	return db('ml_article')->max('id') + 1;
 }

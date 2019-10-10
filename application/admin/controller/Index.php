@@ -74,15 +74,16 @@ class Index extends Base {
 			'page' => $page,
 			'num' => $num,
 		]);
-		$this->assign('page', $page);
-		$this->assign('list', $result);
 		return view('/list');
 	}
 	// 删除文章
 	public function del($id) {
 		if (request()->isGet()) {
 			$res = db('ml_article')->delete($id);
-
+			$path = ROOT_PATH . 'public' . DS . 'static' . DS . 'titleimg' . DS . $id . '.jpg';
+			if (file_exists($path)) {
+				unlink($path);
+			}
 			if ($res == 1) {
 				$this->success('删除成功！', url('/admin/list'), '', 1);
 			} else {
