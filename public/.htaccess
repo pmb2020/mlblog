@@ -7,4 +7,6 @@ RewriteRule ^(.*)$ index.php [L,E=PATH_INFO:$1]
 
 RewriteCond %{HTTP_HOST} ^gold.cn/info/*$ [NC]
 RewriteRule ^(.*)$ http://www.gold404.cn/$1 [R=301,L]
+Redirect permanent http://www.gold404.cn/info/37.html http://www.gold404.cn/info/1.html
+order deny,allow
 </IfModule>
