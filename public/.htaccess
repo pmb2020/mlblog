@@ -4,7 +4,4 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php [L,E=PATH_INFO:$1]
-
-RewriteCond %{HTTP_HOST} ^gold404.cn/info/*$ [NC]
-RewriteRule ^(.*)$ http://www.gold404.cn/$1 [R=301,L]
 </IfModule>

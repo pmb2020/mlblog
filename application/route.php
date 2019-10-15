@@ -27,6 +27,7 @@ return [
 	'gbook' => 'index/index/gbook',
 	'about' => 'index/index/about',
 	'info/:id' => 'index/index/info',
+	'article/:id' => 'index/base/chongdx',
 
 	// 后台路由
 	// admin/login

@@ -121,4 +121,26 @@ class Base extends Controller {
 		return '未知';
 	}
 
+	public function chongdx($id) {
+		Header("HTTP/1.1 301 Moved Permanently");
+		$arr = [
+			'1540478858' => 1,
+			'1540710791' => 4,
+			'1540711196' => 5,
+			'1540780846' => 2,
+			'1540782108' => 3,
+			'1544089250' => 22,
+			'1544623071' => 24,
+			'1541905140' => 15,
+			'1542276845' => 17,
+			'1544351000' => 23,
+		];
+		if (empty($arr[$id])) {
+			Header("Location: http://www.gold404.cn");
+		} else {
+			$url = 'Location: http://www.gold404.cn/info/' . $arr[$id] . '.html';
+			Header($url);
+		}
+	}
+
 }
