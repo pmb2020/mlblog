@@ -122,7 +122,7 @@ class Base extends Controller {
 	}
 
 	public function chongdx($id) {
-		Header("HTTP/1.1 301 Moved Permanently");
+
 		$arr = [
 			'1540478858' => 1,
 			'1540710791' => 4,
@@ -136,9 +136,11 @@ class Base extends Controller {
 			'1544351000' => 23,
 		];
 		if (empty($arr[$id])) {
+			Header("HTTP/1.1 301 Moved Permanently");
 			Header("Location: http://www.gold404.cn");
 		} else {
 			$url = 'Location: http://www.gold404.cn/info/' . $arr[$id] . '.html';
+			Header("HTTP/1.1 301 Moved Permanently");
 			Header($url);
 		}
 	}
