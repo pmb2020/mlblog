@@ -20,9 +20,14 @@
 	<div class="blog_text">
 		{$data.content}
 	</div>
-	<div class="" style="text-align: center;margin: 10px;">
-		<button type="button" style="background-color: red;border: none;padding: 5px 10px;color: #fff;">👍赞一下（57）</button>
+	<!-- 文章版权说明 -->
+	<div class="banquan" style="">
+		<p style="margin-bottom: 5px"><b>作者</b>：<a href="http://www.gold404.cn/about.html" style="margin-right: 15px">K先生</a><b>本文地址</b>：<a href="http://www.gold404.cn/info/{$data.id}.html" title="{$data.title}">http://www.gold404.cn/info/{$data.id}.html</a></p>
+		<p><b>版权声明</b>：本文为原创文章，版权归 <a href="http://www.gold404.cn/">K先生个人博客</a> 所有，欢迎分享本文，转载请保留出处，谢谢！</p>
 	</div>
+	<!-- <div class="" style="text-align: center;margin: 10px;">
+		<button type="button" style="background-color: red;border: none;padding: 5px 10px;color: #fff;">👍赞一下（57）</button>
+	</div> -->
 	<div class="next_div">
 		<p>上一篇：<a href="{$top_title.id}.html">{$top_title.title}</a></p>
 		<p>下一篇：<a href="{$next_title.id}.html">{$next_title.title}</a></p>
