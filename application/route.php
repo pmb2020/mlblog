@@ -34,6 +34,7 @@ return [
 	'admin/login' => 'admin/login/index',
 	'admin/index' => 'admin/index/index',
 	'admin/write' => 'admin/index/write',
+	'admin/update/:id' => 'admin/index/update',
 	'admin/list' => 'admin/index/list',
 	'admin/webtj' => 'admin/index/webtj',
 	// 'admin/webtjType/:id' => 'admin/index/webtjType',

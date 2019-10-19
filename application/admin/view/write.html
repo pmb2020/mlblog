@@ -16,7 +16,7 @@
 				<form action="" method="POST">
 					<div class="m_input_item">
 						<label>标题:</label>
-						<div class="m_input_box"><input class="m_input" type="text" name="title"></div>
+						<div class="m_input_box"><input class="m_input" type="text" name="title" value="{$data.title | default=''}"></div>
 					</div>
 					<div class="m_input_item">
 						<label>类别：</label>
@@ -37,8 +37,9 @@
 					</div>
 					<div class="m_input_item" style="height: 100%">
 						<label>内容：</label>
-						<input type="hidden" name="content" id="editor_txt">
+						<input type="hidden" name="content" id="editor_txt" value="sdas">
 						<div id="editor" style="display: inline-block;width: 80%">
+						{$data.content | default=''}
 						</div>
 					</div>
 					<div class="m_input_item" style="">

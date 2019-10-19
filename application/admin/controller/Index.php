@@ -31,6 +31,28 @@ class Index extends Base {
 
 		return view('/write');
 	}
+	//编辑文章
+	public function update() {
+		if ($id = input('id')) {
+			$data = db('ml_article')->where('id', $id)->find();
+			$this->assign(['data' => $data]);
+		}
+		if (request()->isPost()) {
+			$data = input('post.');
+			if ($data['status'] == 2) {
+				unset($data['status']);
+				$data['is_top'] = 1;
+			}
+			$res = db('ml_article')->where('id', $id)->update($data);
+			if ($res == 1) {
+				$this->success('修改成功！', url('/admin/list'), '', 1);
+			} else {
+				$this->success('修改失败！', url('/admin/list'), '', 1);
+			}
+		}
+
+		return view('/write');
+	}
 	public function list() {
 		$type = request()->param('type');
 		// 0默认 1加密
