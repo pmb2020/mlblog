@@ -8,7 +8,7 @@
 
 {block name='leftBody'}
 <div style="background-color: #fff;padding: 10px 15px;font-size: 14px;">
-	<p style="color: #666;">当前位置：<a href="/">首页</a> > <a href="#">{$data.type}</a> > <a href="#">正文</a></p>
+	<p style="color: #666;">当前位置：<a href="/">首页</a> > <a href="/{$data.type_link}.html">{$data.type}</a> > <a href="#">正文</a></p>
 </div>
 <div class="content">
 	<h2 class="line_h2">{$data.title}</h2>
@@ -29,8 +29,20 @@
 		<button type="button" style="background-color: red;border: none;padding: 5px 10px;color: #fff;">👍赞一下（57）</button>
 	</div> -->
 	<div class="next_div">
-		<p>上一篇：<a href="{$top_title.id}.html">{$top_title.title}</a></p>
-		<p>下一篇：<a href="{$next_title.id}.html">{$next_title.title}</a></p>
+		<p>上一篇：
+			{eq name="top_title.id" value='0'}
+			{$top_title.title}
+			{else /}
+			<a href="{$top_title.id}.html">{$top_title.title}</a>
+			{/eq}
+		</p>
+		<p>下一篇：
+			{eq name="next_title.id" value='0'}
+			{$next_title.title}
+			{else /}
+			<a href="{$next_title.id}.html">{$next_title.title}</a>
+			{/eq}
+		</p>
 	</div>
 </div>
 <ul class="list_two li_dian" style="border-radius: 3px;">

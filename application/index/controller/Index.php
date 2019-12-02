@@ -64,10 +64,10 @@ class Index extends Base {
 		$data2 = db('ml_article')->where("id", "<", $res1['id'])->field('id,title')->order("id", "desc")->find();
 		$data3 = db('ml_article')->field('id,title')->limit(6)->order('rand()')->select(); //随机推荐
 		if (!$data2) {
-			$data2['id'] = '';
+			$data2['id'] = '0';
 			$data2['title'] = '没有上一篇了';}
 		if (!$data1) {
-			$data1['id'] = '';
+			$data1['id'] = '0';
 			$data1['title'] = '没有下一篇了';}
 		// dump(type($res1));die();
 		$res1['desc'] = mb_substr(strip_tags($res1['content']), 0, 150, 'utf-8'); //seo描述
@@ -76,7 +76,6 @@ class Index extends Base {
 			if (!Session::has('admin_name')) {
 				$res1['content'] = cutTab($res1['content'], 150, '......') . '<p class="jiami_p">该文章仅作者可见</p>';
 			}
-
 		}
 		$this->assign([
 			'hot_data' => hotData(),
@@ -111,15 +110,19 @@ function type($arr) {
 	switch ($arr['type']) {
 	case '0':
 		$arr['type'] = '爱生活';
+		$arr['type_link']='alife';
 		break;
 	case '1':
 		$arr['type'] = '爱技术';
+		$arr['type_link']='ajishu';
 		break;
 	case '3':
 		$arr['type'] = '爱拼搏';
+		$arr['type_link']='apinbo';
 		break;
 	default:
 		$arr['type'] = '爱分享';
+		$arr['type_link']='ashare';
 		break;
 	}
 	return $arr;
