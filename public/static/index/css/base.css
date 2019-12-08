@@ -172,7 +172,7 @@ aside{background-color: #fff;padding: 20px;box-shadow: 0 4px 5px 0 #d9dfe9}
     display: -webkit-box;
     -webkit-line-clamp:1;}
 .text_ul li span{position: absolute;right: 0;top: 0;}
-.link_ul li{width: 48%;float: left;background-color: #eceaea;text-align: center;padding: 5px 0;}
+.link_ul li{width: 48%;float: left;background-color: #eceaea;text-align: center;padding: 5px 0;margin-bottom: 15px}
 .link_ul li:nth-child(odd){margin-right: 4%;}
 .link_ul li a{font-size: 14px;color: #333;}
 .min_img_p img{height: 65px!important;width: 100px;}
