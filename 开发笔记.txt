@@ -75,3 +75,9 @@ CREATE TABLE `ml_count` (
   `referer` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
+
+2019.12.11记
+渲染差回复人和时间
+==========
+前台ajax提交，后台管理

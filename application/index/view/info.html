@@ -51,10 +51,13 @@
 	<li><a href="{$rand_title.id}.html">{$rand_title.title}</a></li>
 	{/volist}
 </ul>
+{/block}
+{block name='comment'}
 <!-- 评论 -->
-<div style="background-color: #fff;margin-top: 15px;padding: 20px;margin-bottom: 15px;border-radius: 3px;">
-	<p class="div_top">文章评论</p>
-	<p style="color: #888;">暂无评论</p>
+<div style="background-color: #fff;margin-top: 15px;margin-bottom: 15px;border-radius: 3px;">
+	<!-- <p class="div_top">文章评论</p> -->
+	<!-- <p style="color: #888;">暂无评论</p> -->
+	{include file='block/comment'}
 </div>
 {/block}
 {block name='rightBody'}
@@ -65,6 +68,8 @@
 {block name='myjs'}
 {__block__}
 <script type="text/javascript" src="/__STATIC__1/lib/laycode/laycode.js"></script>
+<script src="/__STATIC__1/lib/comment/js/headimg.js"></script>
+<script type="text/javascript" src="/__STATIC__1/lib/comment/js/comment.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
 		$('pre').laycode({ title:'K先生的代码',skin: 1,by: false});

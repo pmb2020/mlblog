@@ -63,6 +63,31 @@ class Index extends Base {
 		$data1 = db('ml_article')->where("id", ">", $res1['id'])->field('id,title')->order("id", "asc")->find();
 		$data2 = db('ml_article')->where("id", "<", $res1['id'])->field('id,title')->order("id", "desc")->find();
 		$data3 = db('ml_article')->field('id,title')->limit(6)->order('rand()')->select(); //随机推荐
+
+		$data4=db('ml_comment')->where('p_id',$id)->select();
+
+		// $data5=db('ml_comment')->where('com_id',7)->select();//查询出子评论com_id=$data4['id']
+		$data5=Db::table('ml_comment')->where('com_id = 0 AND p_id='.$id)->select();
+		foreach ($data5 as $key => &$value) {
+				// dump($value['com_id']);
+				$temp=Db::table('ml_comment')->where('p_id ='.$id.'  AND com_id='.$value['id'])->select();
+				if ($temp) {
+					// dump($value['id']);
+					$value['child_com']=$temp;
+				}else{
+					$value['child_com']=[];
+				}
+			
+		}
+		// dump($data5);
+		// die();
+		$data4[0]=['id' => 3,
+			'title'=>'我是一个测试title',
+			'data'=>$data3
+			];
+	
+		// dump($data4);	
+		// die();
 		if (!$data2) {
 			$data2['id'] = '0';
 			$data2['title'] = '没有上一篇了';}
@@ -83,6 +108,7 @@ class Index extends Base {
 			'next_title' => $data1,
 			'top_title' => $data2,
 			'rand_title' => $data3,
+			'com_data' =>$data5
 		]);
 		return view('/info');
 	}
