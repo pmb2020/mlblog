@@ -11,6 +11,7 @@ class Comment extends Controller {
 	function index() {
 		$data = input('post.');
 		// $data = json_decode($data);
+		// unset($data['email']);
 		$res = db('ml_comment')->insert($data);
 		// return gettype($data);
 		// $asad = ['titlt', 'wwwwwwww'];\
@@ -26,5 +27,11 @@ class Comment extends Controller {
 			];
 		}
 		return json_encode($response);
+	}
+
+	public function commentAll()
+	{
+		$com=db('ml_comment')->where('p_id',0)->select();
+		return json_encode($com,JSON_UNESCAPED_UNICODE);
 	}
 }

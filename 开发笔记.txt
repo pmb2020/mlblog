@@ -38,16 +38,20 @@ CREATE TABLE `study`.`ml_article` ( `id` INT NOT NULL AUTO_INCREMENT , `status` 
 
 2、评论表
 id
-blog_id  	博客文章id
+p_id  	默认为0留言系统，其他为文章评论
+is_top  是否置顶
+status  状态（正常、审核中、禁止）
 com_id      默认0为一级评论，其他则为子评论
-name        评论人昵称
+username        评论人昵称
 email		评论人邮箱（接收通知）
+href    评论者网址(可为空)
 title		评论内容
 time 		时间
-zan_num     点赞数
-ip			ip
-address     地址
-last_time   上次评论时间
+zan_num 点赞数
+ip			
+address  地址
+zan      赞
+
 
 评论->有人回复->(需要邮件通知)
 

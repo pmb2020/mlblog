@@ -67,10 +67,10 @@ class Index extends Base {
 		$data4=db('ml_comment')->where('p_id',$id)->select();
 
 		// $data5=db('ml_comment')->where('com_id',7)->select();//查询出子评论com_id=$data4['id']
-		$data5=Db::table('ml_comment')->where('com_id = 0 AND p_id='.$id)->select();
+		$data5=Db::table('ml_comment')->where('com_id = 0 AND p_id='.$id)->order('id desc')->select();
 		foreach ($data5 as $key => &$value) {
 				// dump($value['com_id']);
-				$temp=Db::table('ml_comment')->where('p_id ='.$id.'  AND com_id='.$value['id'])->select();
+				$temp=Db::table('ml_comment')->where('p_id ='.$id.'  AND com_id='.$value['id'])->order('id desc')->select();
 				if ($temp) {
 					// dump($value['id']);
 					$value['child_com']=$temp;
@@ -80,13 +80,6 @@ class Index extends Base {
 			
 		}
 		// dump($data5);
-		// die();
-		$data4[0]=['id' => 3,
-			'title'=>'我是一个测试title',
-			'data'=>$data3
-			];
-	
-		// dump($data4);	
 		// die();
 		if (!$data2) {
 			$data2['id'] = '0';
@@ -102,6 +95,11 @@ class Index extends Base {
 				$res1['content'] = cutTab($res1['content'], 150, '......') . '<p class="jiami_p">该文章仅作者可见</p>';
 			}
 		}
+		//获取评论数据
+		// $comment=new Comment();
+		// $comment = $comment -> commentAll($id);
+		// return $comment;
+		// die();
 		$this->assign([
 			'hot_data' => hotData(),
 			'data' => type($res1),

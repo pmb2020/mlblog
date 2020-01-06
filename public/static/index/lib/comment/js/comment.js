@@ -1,7 +1,7 @@
 function comment() {
 	// console.log($('#form0').serialize()); //ajax提交表单数据
 	var title = $("textarea[ name='title' ] ").val();
-	var time = '1秒前';
+	var time = '2秒前';
 	if (title == '') {
 		alert('评论内容不能为空哦!');
 		return false;
@@ -10,13 +10,13 @@ function comment() {
 		var username = getCookie('username');
 		var email = getCookie('email');
 		var url = getCookie('url');
+		var avatar_img = 'src="' + LetterAvatar(username, 50) + '" title="' + username + '" alt="' + username + '"';
 	} else {
 		alert('请先生成ID身份证才能评论');
 		return false;
 	}
-	var avatar_img = 'src="' + LetterAvatar(username, 50) + '" title="' + username + '" alt="' + username + '"';
 	var com = '<li><img class="round" width="50" height="50" ' + avatar_img +
-		'><div class="com_right" style=""><p class="com_info_top"><a href="#">' + username +
+		'><div class="com_right" style=""><p class="com_info_top"><a id="name1" href="#">' + username +
 		'</a><span id="com_zan">赞(15)</span></p><p class="com_info_center" style="">' + title +
 		'</p><div class="com_ul_bom"><span>' + time +
 		'</span><span id="replay"><a href="javascript:void(0)">回复</a></span></div></div></li>';
@@ -25,13 +25,16 @@ function comment() {
 	// console.log(getCookie('username'));
 	$('.com_ul').prepend(com);
 	// var data['username']='ww';
-	// console.log(data);
+	// console.log(window.location.href);
 	//ajax提交数据到服务器
+	var url=window.location.href;
+	var p_id=url.substring(url.indexOf('info/')+5,url.indexOf('.html'));
 	$.ajax({
 		type: 'POST',
 		url: '/index/comment/index',
 		timeout: 10000,
 		data: {
+			'p_id':p_id,
 			'username':username,
 			'email':email,
 			'href':url,
@@ -42,6 +45,10 @@ function comment() {
 			data=JSON.parse(data);
 			if (data.code!=200) {
 				console.log(data.msg);
+			}else{
+				console.log('success');
+				$("textarea[ name='title']").val('');
+				alert('评论成功');
 			}
 		},
 		error: function(data) {
@@ -51,21 +58,61 @@ function comment() {
 
 }
 $(document).ready(function() {
+	let url=window.location.href;
+	let sad=url.indexOf('info/');
+	console.log(url.substring(url.indexOf('info/')+5,url.indexOf('.html')));
 	// 页面加载完毕，先判断cookie是否存在，决定是否显示小卡片
 	if (getCookie('username')) {
 		console.log('存在cookie');
 		$('.create_com').css('display', 'none');
 		$('.com_card').css('display', 'flex');
+		$('#card_name').text(getCookie('username'));
+		$('#card_email').text(getCookie('email'));
+		$('#card_href').text(getCookie('url'));
+		console.log($('#card_name').val())
 		setTimeout(function() {
 			$('.com_card').css('transform', 'rotateY(360deg)');
 		}, 10);
 	} else {
 		console.log('不存在cookie');
 	}
+	//ajax请求初始化评论列表(暂时不使用)
+	$.ajax({
+		type:'POST',
+		url:'/index/comment/commentAll',
+		data:{'id':0},
+		datatype:'json',
+		success:function (data) {
+			data=JSON.parse(data);
+			// console.log(data);
+			// console.log(data[0]);
+			// createComList(data);
+		
+		},error:function (data) {
+			console.log('请求失败');
+		}
+	});
+
+	function createComList(data) {
+		var username = data[0]['username'];
+		var email = data[0]['email'];
+		var url = data[0]['href'];
+		var title=data[0]['title'];
+		var time = data[0]['time'];
+		var avatar_img = 'src="' + LetterAvatar(username, 50) + '" title="' + username + '" alt="' + username + '"';
+			var com = '<li><img class="round" width="50" height="50" ' + avatar_img +
+		'><div class="com_right" style=""><p class="com_info_top"><a id="name1" href="#">' + username +
+		'</a><span id="com_zan">赞(15)</span></p><p class="com_info_center" style="">' + title +
+		'</p><div class="com_ul_bom"><span>' + time +
+		'</span><span id="replay"><a href="javascript:void(0)">回复</a></span></div></div></li>';
+		$('.com_ul').prepend(com);
+	}
+
 
 	//点击回复事件
 	$('.com_ul').on('click', '#replay', function(e) {
-		// console.log('点击了回复');
+		console.log('点击了回复');
+		console.log($(this).parents('.com_ul_bom').prevAll('.com_info_top').children());
 		var name = $(this).parents('.com_ul_bom').prevAll('.com_info_top').children('#name1').text();
 		if (!name) {
 			name = $(this).parents('.com_two_div').children('p').children('#name2').text();
@@ -89,8 +136,8 @@ $(document).ready(function() {
 		}
 	})
 	// 动态回复按钮监听
-	$('.com_right').on('click', '.replay_btn', function(e) {
-		// console.log('回复按钮就是你了');
+	$('.com_ul').on('click', '.replay_btn', function(e) {
+		console.log('提交二级回复');
 		if (getCookie('username')) {
 			var replaytext = $(this).parents('.replay_div').children('input').val();
 			console.log(replaytext);
@@ -108,6 +155,37 @@ $(document).ready(function() {
 				}
 				$(this).parents('.replay_div').remove();
 				//ajax发送数据
+				var url=window.location.href;
+				var p_id=url.substring(url.indexOf('info/')+5,url.indexOf('.html'));
+				$.ajax({
+				type: 'POST',
+		url: '/index/comment/index',
+		timeout: 10000,
+		data: {
+			'p_id':p_id,
+			'username':getCookie('username'),
+			'email':getCookie('email'),
+			'href':getCookie('url'),
+			'title':replaytext,
+			'com_id':$('#com_id').text(),
+			'replayname':getCookie('replayname')
+		},
+		datatype: "json",
+		success: function(data) {
+			data=JSON.parse(data);
+			if (data.code!=200) {
+				console.log(data.msg);
+			}else{
+				console.log('success');
+				// $("textarea[ name='title']").val('');
+				alert('评论成功');
+			}
+		},
+		error: function(data) {
+			console.log('请求错误');
+		}
+	});
+
 			} else {
 				alert('内容不能为空哦');
 			}
@@ -153,8 +231,9 @@ $(document).ready(function() {
 })
 // 点赞监听
 $('.com_ul').on('click', '#com_zan', function(e) {
-	console.log('zan');
-	console.log($(this).text())
+	alert('点赞功能暂未开放哦')
+	// console.log('zan');
+	// console.log($(this).text())
 });
 
 function test1(elm) {
